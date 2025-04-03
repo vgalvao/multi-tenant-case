@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mt-app-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mt-app
+  template:
+    metadata:
+      labels:
+        app: mt-app
+    spec:
+      containers:
+        - name: mt-app
+          image: 195048948400.dkr.ecr.us-east-1.amazonaws.com/mtapp:latest
+          ports:
+            - containerPort: 5000
+          envFrom:
+            - configMapRef:
+                name: mt-app-config

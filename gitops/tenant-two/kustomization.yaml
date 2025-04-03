@@ -1,0 +1,8 @@
+resources:
+  - ../base
+nameSuffix: -tenant-two
+configMapGenerator:
+  - name: mt-app-config
+    behavior: replace
+    literals:
+      - TENANT_ID=TNT02
