@@ -6,3 +6,18 @@ configMapGenerator:
     behavior: replace
     literals:
       - TENANT_ID=TNT01
+
+replacements:
+  - source:
+      kind: Deployment
+      fieldPath: metadata.name
+    targets:
+      - select:
+          kind: Deployment
+        fieldPaths:
+          - spec.selector.matchLabels.app
+          - spec.template.metadata.labels.app
+      - select:
+          kind: Service
+        fieldPaths:
+          - spec.selector.app
